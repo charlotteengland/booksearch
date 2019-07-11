@@ -7,7 +7,7 @@ class ListOfBooks extends Component {
   render(){
     return (
       <div>
-        List of books
+        {ListOfBooks}
       </div>
     )
   }

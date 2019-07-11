@@ -14,14 +14,19 @@ class App extends React.Component {
     };
   }
 
+handleSearch = (searchData) => {
+  console.log(searchData)
+  this.setState({
+    bookList: searchData.items
+  })  
 
+}  
 
   render() {
     return (
       <div>
         <h1>Google Book Search</h1>
-        <Searchbar />
-        <Booklist />
+        <Searchbar handleSearch = {this.handleSearch}/>
       </div>
     
       );

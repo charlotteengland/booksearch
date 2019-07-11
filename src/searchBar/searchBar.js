@@ -7,10 +7,21 @@ class Searchbar extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const url = "https://www.googleapis.com/books/v1/volumes?";
-    const query = `q= {searchTerm}`
+    const query = e.currentTarget.search.value;
+    const searchTerm= `${url}q=${query}`;
+
+    fetch(searchTerm)
+      .then(response => response.json())
+      .then(data => {
+        this.props.handleSearch(data) 
+        // const booklist = Object.keys(data)
+        //       .map(key => data[key].item[0]);
+        // this.setState({
+      
+        // });
+      });
   }
-
-
+  
 
   render() {
     return (
@@ -18,10 +29,11 @@ class Searchbar extends Component {
         <form className="search__form" onSubmit={e => this.handleSubmit(e)}>
           <div className="darkGray">
             <label htmlFor="search">Search:</label>
-            <input
+            <input 
+              name="search"
               placeholder="book"
               id="search"
-              onChange={e => this.titleChanged(e.target.value)}/>
+            />
             <button type="submit" >Search</button>
             </div>
           <label htmlFor="filter">Filter:</label>
